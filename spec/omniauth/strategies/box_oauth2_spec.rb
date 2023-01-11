@@ -45,6 +45,7 @@ describe OmniAuth::Strategies::BoxOauth2 do
 
   describe '#callback_path' do
     it 'has the correct callback path' do
+      @options = { callback_path: '/auth/box_oauth2/callback' }
       expect(subject.callback_path).to eq('/auth/box_oauth2/callback')
     end
   end
@@ -99,10 +100,10 @@ describe OmniAuth::Strategies::BoxOauth2 do
   describe '#access_token' do
     before :each do
       response = double('access token',
-        access_token: 'access_token',         
+        access_token: 'access_token',
         refresh_token: 'refresh_token',
-        expires_in: 3600, 
-        expires_at: 12345, 
+        expires_in: 3600,
+        expires_at: 12345,
       ).as_null_object
       allow(subject).to receive(:access_token) { response }
     end
